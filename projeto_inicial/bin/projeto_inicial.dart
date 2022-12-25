@@ -25,18 +25,15 @@ void main() {
 
 mostrarMadura(String nome, {String? cor}) {}
 
-class Fruta extends Alimento{
+class Fruta extends Alimento {
   String sabor;
   int diasDesdeColheita;
   bool? isMadura;
 
   Fruta(
-      String nome,
-      double peso,
-      String cor,
-      this.sabor,
-      this.diasDesdeColheita,
-      {this.isMadura}): super(nome: nome, cor: cor, peso: peso);
+      String nome, double peso, String cor, this.sabor, this.diasDesdeColheita,
+      {this.isMadura})
+      : super(nome: nome, cor: cor, peso: peso);
 
   estaMadura(int diasParaMadura) {
     isMadura = diasDesdeColheita >= diasParaMadura;
@@ -59,7 +56,7 @@ class Alimento {
   }
 }
 
-class Legumes extends Alimento {
+class Legumes extends Alimento implements Bolo {
   bool isPrecisaCozinhar;
 
   Legumes({
@@ -69,17 +66,34 @@ class Legumes extends Alimento {
     required this.isPrecisaCozinhar,
   }) : super(nome: nome, peso: peso, cor: cor);
 
-  void cozinhar(){
-    if(isPrecisaCozinhar){
+  void cozinhar() {
+    if (isPrecisaCozinhar) {
       print('Pronto, o $nome esta cozinhando');
-    }else{
+    } else {
       print('Nem precisa cozinhar');
     }
   }
+
+  @override
+  void assar() {
+    // TODO: implement assar
+  }
+
+  @override
+  void fazerMassa() {
+    // TODO: implement fazerMassa
+  }
+
+  @override
+  void separarIngredientes() {
+    // TODO: implement separarIngredientes
+  }
 }
 
-// class Citrica {
-//   int diaDecolheita;
-//   bool? isMadura;
-//   double nivelAzedo;
-// }
+abstract class Bolo {
+  void separarIngredientes();
+
+  void fazerMassa();
+
+  void assar();
+}
