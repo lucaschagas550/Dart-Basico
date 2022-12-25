@@ -25,16 +25,18 @@ void main() {
 
 mostrarMadura(String nome, {String? cor}) {}
 
-class Fruta {
-  String nome;
-  double peso;
-  String cor;
+class Fruta extends Alimento{
   String sabor;
   int diasDesdeColheita;
   bool? isMadura;
 
-  Fruta(this.nome, this.peso, this.cor, this.sabor, this.diasDesdeColheita,
-      {this.isMadura});
+  Fruta(
+      String nome,
+      double peso,
+      String cor,
+      this.sabor,
+      this.diasDesdeColheita,
+      {this.isMadura}): super(nome: nome, cor: cor, peso: peso);
 
   estaMadura(int diasParaMadura) {
     isMadura = diasDesdeColheita >= diasParaMadura;
